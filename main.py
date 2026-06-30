@@ -8,11 +8,14 @@ app = Flask(__name__)
 # Load Trained Model
 # -----------------------------
 MODEL_PATH = "random_forest_model.pkl"
+SCALER_PATH = "scaler.pkl"
 
-if os.path.exists(MODEL_PATH):
+if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH):
     model = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
 else:
     model = None
+    scaler = None
 
 
 # -----------------------------
@@ -44,13 +47,21 @@ def predict():
             feedback = float(request.form["feedback"])
             attendance = float(request.form["attendance"])
 
-            prediction = model.predict([
-                [
-                    task_time,
-                    feedback,
-                    attendance
-                ]
-            ])
+            # Create feature array with engineering
+            features = [
+                task_time,
+                feedback,
+                attendance,
+                feedback * attendance,  # Interaction feature
+                task_time * feedback,   # Interaction feature
+                task_time ** 2,         # Polynomial feature
+                feedback ** 2           # Polynomial feature
+            ]
+
+            # Scale features
+            features_scaled = scaler.transform([features])
+
+            prediction = model.predict(features_scaled)
 
             score = round(float(prediction[0]), 2)
 
