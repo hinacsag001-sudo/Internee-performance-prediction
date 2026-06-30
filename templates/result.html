@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            Intern Performance Predictor
+
+        </div>
+
+        <ul>
+
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Predict Again</a></li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= RESULT CARD ================= -->
+
+    <div class="result-container">
+
+        <div class="result-card">
+
+            <h1>
+
+                Prediction Result
+
+            </h1>
+
+            <h2>
+
+                Predicted Performance Score
+
+            </h2>
+
+            <div class="score">
+
+                {{ score }}
+
+            </div>
+
+            <h2>
+
+                Performance Status
+
+            </h2>
+
+            <div class="status {{ color }}">
+
+                {{ status }}
+
+            </div>
+
+            <a href="/predict">
+
+                <button>
+
+                    Predict Another Intern
+
+                </button>
+
+            </a>
+
+            <a href="/">
+
+                <button class="home-btn">
+
+                    Back to Home
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

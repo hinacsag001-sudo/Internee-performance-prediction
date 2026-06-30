@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Predict Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            Intern Performance Predictor
+
+        </div>
+
+        <ul>
+
+            <li><a href="/">Home</a></li>
+
+            <li><a href="/predict">Predict</a></li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= FORM ================= -->
+
+    <div class="form-container">
+
+        <div class="form-card">
+
+            <h1>
+
+                Predict Intern Performance
+
+            </h1>
+
+            <p>
+
+                Enter the intern's details below.
+
+            </p>
+
+            <form action="/predict" method="POST">
+
+                <!-- Task Completion -->
+
+                <label>
+
+                    Task Completion Time (Hours)
+
+                </label>
+
+                <input
+                    type="number"
+                    name="task_time"
+                    step="0.1"
+                    min="0"
+                    required
+                    placeholder="Example: 4.5">
+
+                <!-- Feedback -->
+
+                <label>
+
+                    Feedback Rating (1 - 5)
+
+                </label>
+
+                <input
+                    type="number"
+                    name="feedback"
+                    step="0.1"
+                    min="1"
+                    max="5"
+                    required
+                    placeholder="Example: 4.8">
+
+                <!-- Attendance -->
+
+                <label>
+
+                    Attendance Percentage
+
+                </label>
+
+                <input
+                    type="number"
+                    name="attendance"
+                    min="0"
+                    max="100"
+                    required
+                    placeholder="Example: 95">
+
+                <button type="submit">
+
+                    Predict Performance
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
